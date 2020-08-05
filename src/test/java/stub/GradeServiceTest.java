@@ -9,8 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,7 +26,10 @@ public class GradeServiceTest {
 
     @Test
     public void shouldReturn90WhenCalculateStudentAverageGradeAndGradeIs80And90And100() {
-        when(mockGradeSystem.gradesFor(1001)).thenReturn(Arrays.asList(80.0, 90.0, 100.0));
-        assertEquals(gradeService.calculateAverageGrades(1001), 90.0);
+        long studentId = 1001;
+        double result = gradeService.calculateAverageGrades(studentId);
+
+        when(mockGradeSystem.gradesFor(studentId)).thenReturn(Arrays.asList(80.0, 90.0, 100.0));
+        assertEquals(90.0, result);
     }
 }
